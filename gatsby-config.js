@@ -7,14 +7,14 @@ module.exports = {
   siteMetadata: {
     url,
     siteUrl: url,
-    title: 'johnmascioli.com',
+    title: "Zeevo's Starter",
     subtitle: '',
     copyright: '© All rights reserved.',
     profilePic: './src/pages/photo.jpg',
     menu: [
       {
         label: 'Twitter',
-        path: 'https://twitter.com/john_mascioli',
+        path: 'https://twitter.com/zeevosec',
         external: true,
       },
       {
@@ -29,8 +29,8 @@ module.exports = {
       },
     ],
     author: {
-      name: 'John Mascioli',
-      twitter: 'https://twitter.com/john_mascioli',
+      name: "Shane O'Neill",
+      twitter: 'https://twitter.com/zeevosec',
     },
     categories: ['Featured', 'Favorites'],
   },
