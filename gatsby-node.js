@@ -22,7 +22,6 @@ exports.createPages = ({ graphql, actions }) => {
                 slug
               }
               frontmatter {
-                tags
                 layout
                 category
               }
@@ -90,11 +89,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: 'slug',
       value: slug,
     });
-
-    if (node.frontmatter.tags) {
-      const tagSlugs = node.frontmatter.tags.map(tag => `/tags/${_.kebabCase(tag)}/`);
-      createNodeField({ node, name: 'tagSlugs', value: tagSlugs });
-    }
 
     if (typeof node.frontmatter.category !== 'undefined') {
       const categorySlug = `/categories/${_.kebabCase(node.frontmatter.category)}/`;

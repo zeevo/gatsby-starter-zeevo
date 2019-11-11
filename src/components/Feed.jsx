@@ -9,7 +9,7 @@ const Feed = props => {
     });
   } else {
     return (
-      <p class="post-preview" style={{ textAlign: 'center' }}>
+      <p className="post-preview" style={{ textAlign: 'center' }}>
         "There's nothing here yet..."
       </p>
     );

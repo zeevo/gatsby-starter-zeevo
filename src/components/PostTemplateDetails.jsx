@@ -1,23 +1,23 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import Header from './Header';
-import moment from 'moment';
-import './style/posttemplatedetails.scss';
+import Categories from './Categories';
 
 class PostTemplateDetails extends React.Component {
   render() {
-    const { subtitle, author, title } = this.props.data.site.siteMetadata;
-    const post = this.props.data.markdownRemark;
-    const { background } = this.props.data.markdownRemark.frontmatter;
+    const { categories, menu } = this.props.data.site.siteMetadata;
+    const { html } = this.props.data.markdownRemark;
+    const { title, background, date } = this.props.data.markdownRemark.frontmatter;
 
-    console.log(post);
     return (
       <React.Fragment>
-        <Header background={background.publicURL} title={post.frontmatter.title} {...this.props}></Header>
+        <Header date={date} background={background.publicURL} title={title} menu={menu}>
+          <Categories categories={categories} />
+        </Header>
         <article className="post">
           <section
             className="longform drop container container--narrow"
-            dangerouslySetInnerHTML={{ __html: post.html + '<hr />' }}
+            dangerouslySetInnerHTML={{ __html: html + '<hr />' }}
           ></section>
           <div className="container container--narrow">
             <Link className="button" to="/">

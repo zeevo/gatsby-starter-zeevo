@@ -5,13 +5,11 @@ import Categories from './Categories';
 import Feed from './Feed';
 
 const Blog = props => {
-  const len = props.data.allMarkdownRemark.edges.length;
-  const { categories } = props.data.site.siteMetadata;
+  const { title, categories, menu } = props.data.site.siteMetadata;
 
-  console.log(props);
   return (
     <React.Fragment>
-      <Header title="Blog" {...props}>
+      <Header title={title} menu={menu}>
         <Categories categories={categories} />
       </Header>
       <main className="container container--narrow js-blog-posts">

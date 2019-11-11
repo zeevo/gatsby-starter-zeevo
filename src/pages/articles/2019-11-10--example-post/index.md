@@ -6,8 +6,6 @@ draft: false
 path: '/2019/11/10/example-post/'
 category: 'Featured'
 background: './background.jpg'
-tags:
-  - 'Memes'
 description: 'This is a description'
 ---
 

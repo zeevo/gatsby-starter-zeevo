@@ -39,6 +39,7 @@ export const pageQuery = graphql`
           path
           external
         }
+        categories
         author {
           name
           twitter
@@ -50,12 +51,10 @@ export const pageQuery = graphql`
       id
       html
       fields {
-        tagSlugs
         slug
       }
       frontmatter {
         title
-        tags
         date
         description
         background {

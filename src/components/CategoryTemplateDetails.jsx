@@ -5,14 +5,13 @@ import Categories from './Categories';
 import Feed from './Feed';
 
 const CategoryTemplateDetails = props => {
-  console.log('here');
   const { category } = props.pageContext;
   const { edges } = props.data.allMarkdownRemark;
-  const { categories } = props.data.site.siteMetadata;
+  const { categories, menu } = props.data.site.siteMetadata;
 
   return (
     <React.Fragment>
-      <Header title={category} {...props}>
+      <Header menu={menu} title={category}>
         <Categories categories={categories} />
       </Header>
       <main className="container container--narrow">
