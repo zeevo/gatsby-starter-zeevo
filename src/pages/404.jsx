@@ -1,25 +1,23 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Sidebar from '../components/Sidebar';
 import Layout from '../components/Layout';
+import Header from '../components/Header';
+import Categories from '../components/Categories';
 
 class NotFoundRoute extends React.Component {
   render() {
+    console.log(this.props);
+    const { menu, categories } = this.props.data.site.siteMetadata;
     return (
       <Layout>
-        <div>
-          <Sidebar {...this.props} />
-          <div className="content">
-            <div className="content__inner">
-              <div className="page">
-                <h1 className="page__title">NOT FOUND</h1>
-                <div className="page__body">
-                  <p>That page does not.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Header menu={menu} title={'Page not found...'}>
+          <Categories categories={categories} />
+        </Header>
+        <article className="post">
+          <section className="longform drop container container--narrow">
+            <div style={{ textAlign: 'center' }}>Oops!</div>
+          </section>
+        </article>
       </Layout>
     );
   }
@@ -38,6 +36,7 @@ export const pageQuery = graphql`
           label
           path
         }
+        categories
         author {
           name
           twitter

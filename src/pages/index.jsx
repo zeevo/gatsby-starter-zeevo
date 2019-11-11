@@ -4,8 +4,6 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Blog from '../components/Blog';
 
-import '../assets/css/font-awesome.min.css';
-
 class IndexRoute extends React.Component {
   render() {
     const { title, subtitle } = this.props.data.site.siteMetadata;
