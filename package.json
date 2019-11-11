@@ -1,7 +1,7 @@
 {
   "version": "3.0.0",
-  "name": "johnmascioli.com",
-  "description": "A Gatsby blog",
+  "name": "gatsby-starter-zeevo",
+  "description": "A Gatsby starter blog",
   "main": "n/a",
   "scripts": {
     "develop": "gatsby develop",
@@ -15,7 +15,7 @@
     "deploy": "npm run build && npm run deploy-s3",
     "prettier": "prettier --check '{,!(node_modules|assets)/**/}*.js*'"
   },
-  "repository": "git+https://github.com/zeevosec/johnmascioli.io",
+  "repository": "git+https://github.com/zeevosec/gatsby-starter-zeevo",
   "keywords": [
     "gatsby",
     "blog",

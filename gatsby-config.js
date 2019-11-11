@@ -1,7 +1,7 @@
 const lost = require('lost');
 const pxtorem = require('postcss-pxtorem');
 
-const url = 'https://johnmascioli.com';
+const url = '';
 
 module.exports = {
   siteMetadata: {
@@ -201,12 +201,6 @@ module.exports = {
           }),
         ],
         precision: 8,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-s3',
-      options: {
-        bucketName: 'zeevo-playground.com',
       },
     },
   ],
