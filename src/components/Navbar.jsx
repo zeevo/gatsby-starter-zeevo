@@ -9,7 +9,7 @@ const Navbar = props => {
         {props.menu.map((item, i) => {
           if (item.external) {
             return (
-              <a key={i} href={item} className="header__item__link fade hide-mobile">
+              <a key={i} href={item.path} className="header__item__link fade hide-mobile">
                 {item.label}
               </a>
             );
