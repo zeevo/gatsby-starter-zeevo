@@ -1,1 +1,1 @@
-# johnmascioli.com
+# Gatsby Starter by Zeevo
