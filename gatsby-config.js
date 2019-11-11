@@ -1,7 +1,7 @@
 const lost = require('lost');
 const pxtorem = require('postcss-pxtorem');
 
-const url = '';
+const url = 'http://zeevo-playground.com.s3-website.us-east-2.amazonaws.com/';
 
 module.exports = {
   siteMetadata: {
