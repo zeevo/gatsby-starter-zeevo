@@ -94,7 +94,7 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: 'shaneoneill.io RSS Feed',
+            title: "Zeevo's Gatsby Starter RSS Feed",
           },
         ],
       },
