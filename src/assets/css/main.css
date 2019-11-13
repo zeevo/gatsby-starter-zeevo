@@ -740,9 +740,6 @@ hr {
   width: 100%;
   padding-top: 50%;
 }
-.home__heading {
-  margin-bottom: 0.41666675rem;
-}
 .post-preview {
   margin-top: 3.333334rem;
   margin-bottom: 5.000001rem;
@@ -935,4 +932,23 @@ input[type='submit'] {
 }
 .bg-blue {
   background-color: #277cea;
+}
+.fade,
+.faded {
+  transition: opacity 50ms;
+}
+.fade:hover {
+  opacity: 0.6;
+}
+.faded {
+  opacity: 0.4;
+}
+.faded--60 {
+  opacity: 0.6;
+}
+.faded--80 {
+  opacity: 0.8;
+}
+a.faded:hover {
+  opacity: 1;
 }
