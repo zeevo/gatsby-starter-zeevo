@@ -53,6 +53,9 @@ export const pageQuery = graphql`
         title
         date
         description
+        avatar {
+          publicURL
+        }
         background {
           publicURL
         }

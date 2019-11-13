@@ -5,7 +5,8 @@ import Categories from './Categories';
 const PageTemplateDetails = props => {
   const { menu, categories } = props.data.site.siteMetadata;
   const { html } = props.data.markdownRemark;
-  const { background, title } = props.data.markdownRemark.frontmatter;
+  const { background, title, avatar } = props.data.markdownRemark.frontmatter;
+  console.log(props);
   return (
     <React.Fragment>
       <Header menu={menu} background={background.publicURL} title={title}>
@@ -13,6 +14,7 @@ const PageTemplateDetails = props => {
       </Header>
       <article className="post">
         <section className="longform drop container container--narrow">
+          <div style={{ textAlign: 'center' }}>{avatar ? <img className="avatar" src={avatar.publicURL} /> : null}</div>
           <div
             /* eslint-disable-next-line react/no-danger */
             dangerouslySetInnerHTML={{ __html: html }}

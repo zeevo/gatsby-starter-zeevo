@@ -314,6 +314,11 @@ hr {
   margin-top: 3.333334rem;
   margin-bottom: 3.333334rem;
 }
+.longform .avatar {
+  margin-top: 0.333333rem;
+  margin-bottom: 1.33333rem;
+  display: inline-block;
+}
 .longform hr {
   margin-top: 3.333334rem;
   margin-bottom: 3.333334rem;
