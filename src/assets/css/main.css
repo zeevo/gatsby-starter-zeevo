@@ -611,32 +611,19 @@ hr {
   content: ',\00a0';
   color: rgba(22, 22, 22, 0.4);
 }
-.header__item,
-.footer__item,
-.header__item__link,
-.footer__item__link {
-  display: inline-block;
-}
 .header__item__link {
   cursor: pointer;
   padding: 1em 0.5em;
 }
-.footer__item__link {
-  padding: 0.2em 0.4em;
-}
 .mobile-nav .active {
   opacity: 0.6;
-}
-.footer__item--social {
-  font-size: 1.333333em;
-  margin-left: 0.333333em;
-  margin-right: 0.333333em;
 }
 .header--cover {
   display: block;
   background-size: cover;
   background-position: center;
   width: 100%;
+  max-height: 18rem;
   color: #fff;
 }
 .fader {
