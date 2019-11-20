@@ -3,6 +3,7 @@
   description: Yet another Blog starter with a different style
   tags:
     - Blog
+    - Markdown
   features:
     - Extendable
     - Feature filters
