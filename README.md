@@ -1,4 +1,4 @@
-![Home Page](./doc/homepage.png)
+![Home Page](./docs/homepage.png)
 
 # Gatsby Starter by Zeevo
 
