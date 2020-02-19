@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from './Header';
-import PostPreview from './PostPreview';
 import Categories from './Categories';
 import Feed from './Feed';
 
 const CategoryTemplateDetails = props => {
-  const { category } = props.pageContext;
-  const { edges } = props.data.allMarkdownRemark;
-  const { categories, menu } = props.data.site.siteMetadata;
+  const { data, pageContext } = props;
+  const { category } = pageContext;
+  const { edges } = data.allWordpressPost;
+  const { categories, menu } = data.site.siteMetadata;
 
   return (
     <React.Fragment>

@@ -1,16 +1,16 @@
 import React from 'react';
 import moment from 'moment';
 
-export default function PostPreview({ post }) {
-  const { title, date, category, description } = post.node.frontmatter;
-  const { slug, categorySlug } = post.node.fields;
-  const { timeToRead } = post.node;
+const PostPreview = ({ post }) => {
+  const { title, date, excerpt, slug } = post.node;
+
+  const uri = `/${moment(new Date(date)).format('YYYY/MM/DD')}/${slug}`;
 
   return (
     <article className="post-preview">
       <header className="post-preview__header">
         <h2>
-          <a href={slug}>{title}</a>
+          <a href={uri}>{title}</a>
         </h2>
         <small className="post__meta">
           <time dateTime={moment(date).format('MMMM D, YYYY')} className="faded">
@@ -18,13 +18,15 @@ export default function PostPreview({ post }) {
           </time>
         </small>
       </header>
-      <section className="longform longform--short">
-        <p>{description}</p>
-      </section>
-
-      <a href={slug} className="button faded">
+      <section
+        className="longform longform--short"
+        dangerouslySetInnerHTML={{ __html: excerpt.replace(/\s\[&hellip;]/, '...') }}
+      />
+      <a href={uri} className="button faded">
         Read more
       </a>
     </article>
   );
-}
+};
+
+export default PostPreview;

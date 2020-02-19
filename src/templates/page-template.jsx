@@ -6,6 +6,9 @@ import PageTemplateDetails from '../components/PageTemplateDetails';
 
 class PageTemplate extends React.Component {
   render() {
+    // TODO
+    return <p>TODO</p>;
+
     const { title, subtitle } = this.props.data.site.siteMetadata;
     const page = this.props.data.markdownRemark;
     const { title: pageTitle, description: pageDescription } = page.frontmatter;
@@ -28,37 +31,35 @@ class PageTemplate extends React.Component {
 export default PageTemplate;
 
 export const pageQuery = graphql`
-  query PageBySlug($slug: String!) {
+  query($id: String!) {
     site {
       siteMetadata {
         title
         subtitle
         copyright
+        profilePic
+        categories
         menu {
           label
           path
           external
         }
-        categories
         author {
           name
           twitter
         }
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    wordpressPage(id: { eq: $id }) {
       id
-      html
-      frontmatter {
-        title
-        date
-        description
-        avatar {
-          publicURL
-        }
-        background {
-          publicURL
-        }
+      title
+      date
+      excerpt
+      content
+      type
+      slug
+      author {
+        name
       }
     }
   }

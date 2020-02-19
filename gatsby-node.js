@@ -2,6 +2,7 @@ const _ = require('lodash');
 const Promise = require('bluebird');
 const path = require('path');
 const slash = require('slash');
+const moment = require('moment');
 const config = require('./gatsby-config');
 
 exports.createPages = ({ graphql, actions }) => {
@@ -15,16 +16,25 @@ exports.createPages = ({ graphql, actions }) => {
 
     graphql(`
       {
-        allMarkdownRemark(limit: 1000, filter: { frontmatter: { draft: { ne: true } } }) {
+        allWordpressPost(sort: { fields: [date] }) {
           edges {
             node {
-              fields {
-                slug
-              }
-              frontmatter {
-                layout
-                category
-              }
+              id
+              date
+              title
+              slug
+              type
+            }
+          }
+        }
+        allWordpressPage(sort: { fields: [date] }) {
+          edges {
+            node {
+              id
+              date
+              slug
+              title
+              type
             }
           }
         }
@@ -35,28 +45,40 @@ exports.createPages = ({ graphql, actions }) => {
         reject(result.errors);
       }
 
-      _.each(result.data.allMarkdownRemark.edges, edge => {
-        if (_.get(edge, 'node.frontmatter.layout') === 'page') {
+      const allContent = result.data.allWordpressPost.edges.concat(result.data.allWordpressPage.edges);
+
+      const sortedAllContent = allContent.sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+      });
+
+      _.each(sortedAllContent, edge => {
+        console.log(edge);
+        const { date } = edge.node;
+        const { slug } = edge.node;
+        const preSlug = moment(new Date(date)).format('YYYY/MM/DD');
+        const formattedURI = `${preSlug}/${slug}`;
+        if (_.get(edge, 'node.type') === 'page') {
           createPage({
-            path: edge.node.fields.slug,
+            path: slug,
             component: slash(pageTemplate),
-            context: { slug: edge.node.fields.slug, background: edge.node.fields.background },
+            context: { id: edge.node.id, background: edge.node.background, uri: slug },
           });
-        } else if (_.get(edge, 'node.frontmatter.layout') === 'post') {
+        } else if (_.get(edge, 'node.type') === 'post') {
           createPage({
-            path: edge.node.fields.slug,
+            path: formattedURI,
             component: slash(postTemplate),
-            context: { slug: edge.node.fields.slug },
+            context: { id: edge.node.id, uri: formattedURI },
           });
 
           let categories = config.siteMetadata.categories;
-          if (_.get(edge, 'node.frontmatter.category')) {
+          if (_.get(edge, 'node.categories')) {
             categories = categories.concat(edge.node.frontmatter.category);
           }
 
           categories = _.uniq(categories);
           _.each(categories, category => {
             const categoryPath = `/categories/${_.kebabCase(category)}/`;
+            console.log(category);
             createPage({
               path: categoryPath,
               component: categoryTemplate,

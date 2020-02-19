@@ -13,7 +13,7 @@ const Blog = props => {
         <Categories categories={categories} />
       </Header>
       <main className="container container--narrow js-blog-posts">
-        <Feed posts={props.data.allMarkdownRemark.edges} />
+        <Feed posts={props.data.allWordpressPost.edges} />
       </main>
     </React.Fragment>
   );

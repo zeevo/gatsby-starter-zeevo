@@ -58,8 +58,8 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) =>
-              allMarkdownRemark.edges.map(edge =>
+            serialize: ({ query: { site, allWordpressPost } }) =>
+              allWordPressPost.edges.map(edge =>
                 Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.frontmatter.description,
                   date: edge.node.frontmatter.date,
@@ -70,9 +70,9 @@ module.exports = {
               ),
             query: `
               {
-                allMarkdownRemark(
+                allWordpressPost(
                   limit: 1000,
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  sort: { order: DESC, fields: [date] },
                   filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
                 ) {
                   edges {
@@ -81,13 +81,11 @@ module.exports = {
                       fields {
                         slug
                       }
-                      frontmatter {
-                        title
-                        date
-                        layout
-                        draft
-                        description
-                      }
+                      title
+                      date
+                      layout
+                      draft
+                      description
                     }
                   }
                 }
@@ -201,6 +199,16 @@ module.exports = {
           }),
         ],
         precision: 8,
+      },
+    },
+    {
+      resolve: 'gatsby-source-wordpress',
+      options: {
+        baseUrl: 'http://wptestgatsby.local/',
+        protocol: 'http',
+        hostingWPCOM: false,
+        useACF: true,
+        verboseOutput: false,
       },
     },
   ],

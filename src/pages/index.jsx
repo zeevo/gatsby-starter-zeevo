@@ -26,7 +26,7 @@ class IndexRoute extends React.Component {
 export default IndexRoute;
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query {
     site {
       siteMetadata {
         title
@@ -45,23 +45,23 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(
-      limit: 1000
-      filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
-      sort: { order: DESC, fields: [frontmatter___date] }
-    ) {
+    allWordpressPost(sort: { order: DESC, fields: date }) {
       edges {
         node {
-          timeToRead
-          fields {
-            slug
-            categorySlug
+          title
+          date
+          excerpt
+          type
+          slug
+          author {
+            name
           }
-          frontmatter {
+          categories {
+            name
+          }
+          featured_media {
+            source_url
             title
-            date
-            category
-            description
           }
         }
       }
