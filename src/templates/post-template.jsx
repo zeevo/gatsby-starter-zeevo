@@ -70,6 +70,15 @@ export const pageQuery = graphql`
         name
       }
     }
+    allWordpressPage {
+      edges {
+        node {
+          id
+          slug
+          title
+        }
+      }
+    }
     allWordpressPost {
       distinct(field: categories___name)
     }

@@ -5,14 +5,22 @@ import Categories from './Categories';
 import background from '../assets/background.jpg';
 
 const PostTemplateDetails = props => {
-  console.log(background);
   const { data } = props;
-  const { categories, menu } = data.site.siteMetadata;
+  const { menu, author } = data.site.siteMetadata;
+  const { name } = author;
   const { title, date, content, featured_media: featuredMedia } = data.wordpressPost;
+
+  const categories = data.allWordpressPost.distinct;
 
   return (
     <React.Fragment>
-      <Header date={date} background={featuredMedia ? featuredMedia.source_url : background} title={title} menu={menu}>
+      <Header
+        date={date}
+        background={featuredMedia ? featuredMedia.source_url : background}
+        title={title}
+        subtitle={name}
+        menu={menu}
+      >
         <Categories categories={categories} />
       </Header>
       <article className="post">

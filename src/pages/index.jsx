@@ -65,5 +65,14 @@ export const pageQuery = graphql`
         }
       }
     }
+    allWordpressPage {
+      edges {
+        node {
+          id
+          slug
+          title
+        }
+      }
+    }
   }
 `;

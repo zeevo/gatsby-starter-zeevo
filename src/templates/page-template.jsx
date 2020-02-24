@@ -56,6 +56,19 @@ export const pageQuery = graphql`
       author {
         name
       }
+      featured_media {
+        source_url
+        title
+      }
+    }
+    allWordpressPage {
+      edges {
+        node {
+          id
+          slug
+          title
+        }
+      }
     }
     allWordpressPost {
       distinct(field: categories___name)

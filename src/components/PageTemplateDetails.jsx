@@ -5,21 +5,22 @@ import background from '../assets/background.jpg';
 
 const PageTemplateDetails = props => {
   const { data } = props;
-  const { menu, categories } = data.site.siteMetadata;
-  const { content, title } = data.wordpressPage;
+  const { menu } = data.site.siteMetadata;
+  const { title, content, featured_media: featuredMedia } = data.wordpressPage;
+
+  const categories = data.allWordpressPost.distinct;
 
   return (
     <React.Fragment>
-      <Header menu={menu} background={background} title={title}>
+      <Header
+        menu={menu}
+        background={featuredMedia.source_url ? featuredMedia.source_url : background}
+        title={title}
+      >
         <Categories categories={categories} />
       </Header>
       <article className="post">
         <section className="longform drop container container--narrow">
-          {/* TODO: figure out avatar */}
-
-          {/* <div style={{ textAlign: 'center' }}>
-            {avatar ? <img className="avatar" alt="avatar" src={avatar.publicURL} /> : null}
-          </div> */}
           <div
             /* eslint-disable-next-line react/no-danger */
             dangerouslySetInnerHTML={{ __html: content }}

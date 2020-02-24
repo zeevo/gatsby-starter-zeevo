@@ -13,7 +13,7 @@
     "format": "prettier --write './*.js' 'src/**/*.js' 'src/**/*.jsx'",
     "deploy-s3": "gatsby-plugin-s3 deploy -y",
     "deploy": "npm run build && npm run deploy-s3",
-    "prettier": "prettier --check '{,!(node_modules|assets)/**/}*.js*'"
+    "prettier": "prettier --write '{,!(node_modules|assets)/**/}*.js*'"
   },
   "repository": "git+https://github.com/zeevosec/gatsby-starter-zeevo",
   "keywords": [

@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import defaultBackground from '../assets/background.jpg';
 
 export default function Header(props) {
-  const { title, date, menu, background, children } = props;
+  const { title, subtitle, date, menu, background, children } = props;
 
   const finalBackground = background || defaultBackground;
   return (
@@ -13,6 +13,7 @@ export default function Header(props) {
       <Navbar menu={menu} />
       <section className="header__header container">
         <h1>{title}</h1>
+        <h3>{subtitle}</h3>
         {date ? moment(date).format('MMMM D, YYYY') : null}
       </section>
       {children}

@@ -45,7 +45,9 @@ exports.createPages = ({ graphql, actions }) => {
         reject(result.errors);
       }
 
-      const allContent = result.data.allWordpressPost.edges.concat(result.data.allWordpressPage.edges);
+      const allContent = result.data.allWordpressPost.edges.concat(
+        result.data.allWordpressPage.edges
+      );
 
       const sortedAllContent = allContent.sort((a, b) => {
         return new Date(a.date) - new Date(b.date);
