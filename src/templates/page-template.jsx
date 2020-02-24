@@ -4,29 +4,24 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import PageTemplateDetails from '../components/PageTemplateDetails';
 
-class PageTemplate extends React.Component {
-  render() {
-    // TODO
-    return <p>TODO</p>;
+const PageTemplate = props => {
+  const { data } = props;
+  const { title: siteTitle } = data.site.siteMetadata;
+  const { title: postTitle, description, tags } = data.wordpressPage;
 
-    const { title, subtitle } = this.props.data.site.siteMetadata;
-    const page = this.props.data.markdownRemark;
-    const { title: pageTitle, description: pageDescription } = page.frontmatter;
-    const description = pageDescription !== null ? pageDescription : subtitle;
-
-    return (
-      <Layout>
-        <div>
-          <Helmet>
-            <title>{`${pageTitle} - ${title}`}</title>
-            <meta name="description" content={description} />
-          </Helmet>
-          <PageTemplateDetails {...this.props} />
-        </div>
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout>
+      <div>
+        <Helmet>
+          <title>{`${postTitle} - ${siteTitle}`}</title>
+          <meta name="description" content={description} />
+          <meta name="tags" {...(tags ? { content: tags.join(',') } : {})} />
+        </Helmet>
+        <PageTemplateDetails {...props} />
+      </div>
+    </Layout>
+  );
+};
 
 export default PageTemplate;
 
