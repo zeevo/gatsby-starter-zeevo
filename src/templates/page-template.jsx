@@ -62,5 +62,8 @@ export const pageQuery = graphql`
         name
       }
     }
+    allWordpressPost {
+      distinct(field: categories___name)
+    }
   }
 `;

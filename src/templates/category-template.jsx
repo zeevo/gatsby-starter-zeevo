@@ -5,8 +5,10 @@ import Layout from '../components/Layout';
 import CategoryTemplateDetails from '../components/CategoryTemplateDetails';
 
 const CategoryTemplate = props => {
-  const { title } = props.data.site.siteMetadata;
-  const { category } = props.pageContext;
+  console.log(props);
+  const { data, pageContext } = props;
+  const { title } = data.site.siteMetadata;
+  const { category } = pageContext;
 
   return (
     <Layout>
@@ -24,7 +26,7 @@ const CategoryTemplate = props => {
 export default CategoryTemplate;
 
 export const pageQuery = graphql`
-  query($category: String) {
+  query {
     site {
       siteMetadata {
         title
@@ -42,11 +44,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allWordpressPost(
-      limit: 1000
-      filter: { categories: { elemMatch: { name: { eq: $category } } } }
-      sort: { order: DESC, fields: date }
-    ) {
+    allWordpressPost(limit: 1000, sort: { order: DESC, fields: date }) {
       edges {
         node {
           title

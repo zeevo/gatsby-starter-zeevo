@@ -1,11 +1,19 @@
-import Header from './Header';
 import React from 'react';
-import PostPreview from './PostPreview';
+
+import Header from './Header';
 import Categories from './Categories';
 import Feed from './Feed';
 
 const Blog = props => {
-  const { title, categories, menu } = props.data.site.siteMetadata;
+  const { data } = props;
+
+  const { title, menu } = data.site.siteMetadata;
+
+  const categories = data.allWordpressPost.edges
+    .map(edge => edge.node.categories)
+    .reduce((accumulator, cats) => accumulator.concat(cats), [])
+    .map(cate => cate.name)
+    .reduce((uniques, item) => (uniques.includes(item) ? uniques : [...uniques, item]), []);
 
   return (
     <React.Fragment>
@@ -13,7 +21,7 @@ const Blog = props => {
         <Categories categories={categories} />
       </Header>
       <main className="container container--narrow js-blog-posts">
-        <Feed posts={props.data.allWordpressPost.edges} />
+        <Feed posts={data.allWordpressPost.edges} />
       </main>
     </React.Fragment>
   );

@@ -7,9 +7,10 @@ const Feed = props => {
   if (len) {
     return props.posts.map((edge, i) => <PostPreview key={i} post={edge} />);
   }
+  const message = "There's nothing here yet...";
   return (
     <p className="post-preview" style={{ textAlign: 'center' }}>
-      "There's nothing here yet..."
+      {message}
     </p>
   );
 };

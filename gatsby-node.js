@@ -52,7 +52,6 @@ exports.createPages = ({ graphql, actions }) => {
       });
 
       _.each(sortedAllContent, edge => {
-        console.log(edge);
         const { date } = edge.node;
         const { slug } = edge.node;
         const preSlug = moment(new Date(date)).format('YYYY/MM/DD');

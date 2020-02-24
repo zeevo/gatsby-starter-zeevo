@@ -4,24 +4,23 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Blog from '../components/Blog';
 
-class IndexRoute extends React.Component {
-  render() {
-    const { title, subtitle } = this.props.data.site.siteMetadata;
+const IndexRoute = props => {
+  const { data } = props;
+  const { title, subtitle } = data.site.siteMetadata;
 
-    return (
-      <Layout>
-        <div>
-          <Helmet>
-            <title>{title}</title>
-            <meta name="description" content={subtitle} />
-          </Helmet>
-          <div />
-          <Blog {...this.props} />
-        </div>
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout>
+      <div>
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={subtitle} />
+        </Helmet>
+        <div />
+        <Blog {...props} />
+      </div>
+    </Layout>
+  );
+};
 
 export default IndexRoute;
 

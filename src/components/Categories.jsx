@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-const Filter = ({ topic }) => {
+const Filter = props => {
+  const { topic } = props;
   return (
     <li className="header__tab">
       <Link to={`/categories/${topic.toLowerCase()}`} className="header__tab__link faded faded--60">
@@ -13,12 +14,13 @@ const Filter = ({ topic }) => {
 
 const Categories = props => {
   const { categories } = props;
+  console.log(categories);
   return (
     <div className="header__tabs-wrap">
       <div className="container container--narrow">
         <ul className="header__tabs">
           <li className="header__tab">
-            <Link to={`/`} className="header__tab__link faded faded--60">
+            <Link to="/" className="header__tab__link faded faded--60">
               All
             </Link>
           </li>
