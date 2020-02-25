@@ -7,7 +7,16 @@
   },
   "rules": {
     "arrow-parens": ["error", "as-needed"],
-    "comma-dangle": ["error", "always-multiline"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "only-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline",
+        "exports": "only-multiline",
+        "functions": "only-multiline"
+      }
+    ],
     "function-paren-newline": "off",
     "no-console": "off",
     "prefer-destructuring": "off",

@@ -10,7 +10,9 @@ const PostTemplateDetails = props => {
   const { name } = author;
   const { title, date, content, featured_media: featuredMedia } = data.wordpressPost;
 
-  const categories = data.allWordpressPost.distinct;
+  const categories = data.allWordpressPost.distinct.filter(
+    category => category.toLowerCase() !== 'uncategorized'
+  );
 
   return (
     <React.Fragment>

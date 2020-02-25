@@ -13,7 +13,8 @@ const Blog = props => {
     .map(edge => edge.node.categories)
     .reduce((accumulator, cats) => accumulator.concat(cats), [])
     .map(cate => cate.name)
-    .reduce((uniques, item) => (uniques.includes(item) ? uniques : [...uniques, item]), []);
+    .reduce((uniques, item) => (uniques.includes(item) ? uniques : [...uniques, item]), [])
+    .filter(name => name.toLowerCase() !== 'uncategorized');
 
   return (
     <React.Fragment>

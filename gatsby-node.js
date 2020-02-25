@@ -24,6 +24,9 @@ exports.createPages = ({ graphql, actions }) => {
               title
               slug
               type
+              categories {
+                name
+              }
             }
           }
         }
@@ -49,9 +52,7 @@ exports.createPages = ({ graphql, actions }) => {
         result.data.allWordpressPage.edges
       );
 
-      const sortedAllContent = allContent.sort((a, b) => {
-        return new Date(a.date) - new Date(b.date);
-      });
+      const sortedAllContent = allContent.sort((a, b) => new Date(a.date) - new Date(b.date));
 
       _.each(sortedAllContent, edge => {
         const { date } = edge.node;
@@ -71,20 +72,22 @@ exports.createPages = ({ graphql, actions }) => {
             context: { id: edge.node.id, uri: formattedURI },
           });
 
-          let categories = config.siteMetadata.categories;
-          if (_.get(edge, 'node.categories')) {
-            categories = categories.concat(edge.node.frontmatter.category);
+          console.log(edge);
+          if (_.get(edge, 'node.categories') && _.get(edge, 'node.categories').length) {
+            console.log(_.get(edge, 'node.categories'));
+            _.uniq(_.get(edge, 'node.categories'))
+              .map(category => category.name)
+              .filter(category => category.toLowerCase() !== 'uncategorized')
+              .forEach(category => {
+                console.log(category);
+                const categoryPath = `/categories/${_.kebabCase(category)}/`;
+                createPage({
+                  path: categoryPath,
+                  component: categoryTemplate,
+                  context: { category },
+                });
+              });
           }
-
-          categories = _.uniq(categories);
-          _.each(categories, category => {
-            const categoryPath = `/categories/${_.kebabCase(category)}/`;
-            createPage({
-              path: categoryPath,
-              component: categoryTemplate,
-              context: { category },
-            });
-          });
         }
       });
 

@@ -11,7 +11,8 @@ const CategoryTemplateDetails = props => {
   const allCategories = data.allWordpressPost.edges
     .map(edge => edge.node.categories)
     .reduce((accumulator, cats) => accumulator.concat(cats), [])
-    .map(cate => cate.name);
+    .map(cate => cate.name)
+    .filter(name => name.toLowerCase() !== 'uncategorized');
 
   const filteredPosts = data.allWordpressPost.edges.filter(edge => {
     const names = edge.node.categories.map(cat => cat.name);

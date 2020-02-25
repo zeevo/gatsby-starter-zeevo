@@ -9,6 +9,7 @@ const CategoryTemplate = props => {
   const { title } = data.site.siteMetadata;
   const { category } = pageContext;
 
+  console.log('here');
   return (
     <Layout>
       <div>

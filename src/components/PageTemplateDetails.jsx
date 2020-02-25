@@ -8,7 +8,9 @@ const PageTemplateDetails = props => {
   const { menu } = data.site.siteMetadata;
   const { title, content, featured_media: featuredMedia } = data.wordpressPage;
 
-  const categories = data.allWordpressPost.distinct;
+  const categories = data.allWordpressPost.distinct.filter(
+    name => name.toLowerCase() !== 'uncategorized'
+  );
 
   return (
     <React.Fragment>
