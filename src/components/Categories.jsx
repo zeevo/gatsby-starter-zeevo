@@ -14,7 +14,6 @@ const Filter = props => {
 
 const Categories = props => {
   const { categories } = props;
-  console.log(categories);
   return (
     <div className="header__tabs-wrap">
       <div className="container container--narrow">

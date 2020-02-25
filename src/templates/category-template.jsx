@@ -5,7 +5,6 @@ import Layout from '../components/Layout';
 import CategoryTemplateDetails from '../components/CategoryTemplateDetails';
 
 const CategoryTemplate = props => {
-  console.log(props);
   const { data, pageContext } = props;
   const { title } = data.site.siteMetadata;
   const { category } = pageContext;

@@ -6,7 +6,6 @@ import Categories from '../components/Categories';
 
 class NotFoundRoute extends React.Component {
   render() {
-    console.log(this.props);
     const { menu, categories } = this.props.data.site.siteMetadata;
     return (
       <Layout>

@@ -79,7 +79,6 @@ exports.createPages = ({ graphql, actions }) => {
           categories = _.uniq(categories);
           _.each(categories, category => {
             const categoryPath = `/categories/${_.kebabCase(category)}/`;
-            console.log(category);
             createPage({
               path: categoryPath,
               component: categoryTemplate,
