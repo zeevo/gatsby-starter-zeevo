@@ -14,7 +14,7 @@ const PageTemplateDetails = props => {
     <React.Fragment>
       <Header
         menu={menu}
-        background={featuredMedia.source_url ? featuredMedia.source_url : background}
+        background={featuredMedia ? featuredMedia.source_url : background}
         title={title}
       >
         <Categories categories={categories} />
