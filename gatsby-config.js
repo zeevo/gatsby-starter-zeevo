@@ -204,7 +204,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        baseUrl: 'http://wptestgatsby.local/',
+        baseUrl: 'http://ec2-3-15-175-195.us-east-2.compute.amazonaws.com/blog/index.php/',
         protocol: 'http',
         hostingWPCOM: false,
         useACF: true,
