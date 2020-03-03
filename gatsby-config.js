@@ -32,7 +32,6 @@ module.exports = {
       name: "Shane O'Neill",
       twitter: 'https://twitter.com/zeevosec',
     },
-    categories: ['Featured', 'Favorites'],
   },
   plugins: [
     {
@@ -59,37 +58,29 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allWordpressPost } }) =>
-              allWordPressPost.edges.map(edge =>
-                Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.frontmatter.description,
-                  date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.url + edge.node.fields.slug,
-                  guid: site.siteMetadata.url + edge.node.fields.slug,
-                  custom_elements: [{ 'content:encoded': edge.node.html }],
-                })
-              ),
+              allWordpressPost.edges.map(edge => ({
+                description: edge.node.acf.description,
+                date: edge.node.date,
+                url: site.siteMetadata.url + edge.node.slug,
+                guid: site.siteMetadata.url + edge.node.slug,
+                custom_elements: [{ 'content:encoded': edge.node.content }],
+              })),
             query: `
-              {
-                allWordpressPost(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [date] },
-                  filter: { frontmatter: { layout: { eq: "post" }, draft: { ne: true } } }
-                ) {
-                  edges {
-                    node {
-                      html
-                      fields {
-                        slug
-                      }
-                      title
-                      date
-                      layout
-                      draft
+            {
+                allWordpressPost(limit: 1000, sort: {fields: date, order: DESC}, filter: {title: {regex: "/^((?!dummy).)*$/igm"}}) {
+                edges {
+                  node {
+                    content
+                    slug
+                    title
+                    date
+                    acf {
                       description
                     }
                   }
                 }
               }
+            }
             `,
             output: '/rss.xml',
             title: "Zeevo's Gatsby Starter RSS Feed",
@@ -204,7 +195,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        baseUrl: 'http://ec2-3-15-175-195.us-east-2.compute.amazonaws.com/blog/index.php/',
+        // baseUrl: 'http://ec2-3-15-175-195.us-east-2.compute.amazonaws.com/blog/index.php/',
+        baseUrl: 'http://52.23.188.233/',
         protocol: 'http',
         hostingWPCOM: false,
         useACF: true,

@@ -33,7 +33,6 @@ export const pageQuery = graphql`
         subtitle
         copyright
         profilePic
-        categories
         menu {
           label
           path

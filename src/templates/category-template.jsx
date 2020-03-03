@@ -37,14 +37,17 @@ export const pageQuery = graphql`
           path
           external
         }
-        categories
         author {
           name
           twitter
         }
       }
     }
-    allWordpressPost(limit: 1000, sort: { order: DESC, fields: date }) {
+    allWordpressPost(
+      limit: 1000
+      sort: { order: DESC, fields: date }
+      filter: { title: { regex: "/^((?!dummy).)*$/igm" } }
+    ) {
       edges {
         node {
           title

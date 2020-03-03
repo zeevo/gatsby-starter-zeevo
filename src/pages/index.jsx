@@ -32,7 +32,6 @@ export const pageQuery = graphql`
         subtitle
         copyright
         profilePic
-        categories
         menu {
           label
           path
@@ -44,7 +43,10 @@ export const pageQuery = graphql`
         }
       }
     }
-    allWordpressPost(sort: { order: DESC, fields: date }) {
+    allWordpressPost(
+      sort: { order: DESC, fields: date }
+      filter: { title: { regex: "/^((?!dummy).)*$/igm" } }
+    ) {
       edges {
         node {
           title

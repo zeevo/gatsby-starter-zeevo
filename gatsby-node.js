@@ -16,7 +16,10 @@ exports.createPages = ({ graphql, actions }) => {
 
     graphql(`
       {
-        allWordpressPost(sort: { fields: [date] }) {
+        allWordpressPost(
+          sort: { fields: [date] }
+          filter: { title: { regex: "/^((?!dummy).)*$/igm" } }
+        ) {
           edges {
             node {
               id
@@ -72,14 +75,11 @@ exports.createPages = ({ graphql, actions }) => {
             context: { id: edge.node.id, uri: formattedURI },
           });
 
-          console.log(edge);
           if (_.get(edge, 'node.categories') && _.get(edge, 'node.categories').length) {
-            console.log(_.get(edge, 'node.categories'));
             _.uniq(_.get(edge, 'node.categories'))
               .map(category => category.name)
               .filter(category => category.toLowerCase() !== 'uncategorized')
               .forEach(category => {
-                console.log(category);
                 const categoryPath = `/categories/${_.kebabCase(category)}/`;
                 createPage({
                   path: categoryPath,

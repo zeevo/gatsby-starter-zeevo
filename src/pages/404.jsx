@@ -4,23 +4,28 @@ import Layout from '../components/Layout';
 import Header from '../components/Header';
 import Categories from '../components/Categories';
 
-class NotFoundRoute extends React.Component {
-  render() {
-    const { menu, categories } = this.props.data.site.siteMetadata;
-    return (
-      <Layout>
-        <Header menu={menu} title={'Page not found...'}>
-          <Categories categories={categories} />
-        </Header>
-        <article className="post">
-          <section className="longform drop container container--narrow">
-            <div style={{ textAlign: 'center' }}>Oops!</div>
-          </section>
-        </article>
-      </Layout>
-    );
-  }
-}
+const NotFoundRoute = props => {
+  const { data } = props;
+
+  const { menu } = data.site.siteMetadata;
+
+  const categories = data.allWordpressPost.distinct.filter(
+    name => name.toLowerCase() !== 'uncategorized'
+  );
+
+  return (
+    <Layout>
+      <Header menu={menu} title={'Page not found...'}>
+        <Categories categories={categories} />
+      </Header>
+      <article className="post">
+        <section className="longform drop container container--narrow">
+          <div style={{ textAlign: 'center' }}>Oops!</div>
+        </section>
+      </article>
+    </Layout>
+  );
+};
 
 export default NotFoundRoute;
 
@@ -35,12 +40,14 @@ export const pageQuery = graphql`
           label
           path
         }
-        categories
         author {
           name
           twitter
         }
       }
+    }
+    allWordpressPost {
+      distinct(field: categories___name)
     }
   }
 `;
