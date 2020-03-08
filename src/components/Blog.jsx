@@ -7,7 +7,7 @@ import Feed from './Feed';
 const Blog = props => {
   const { data } = props;
 
-  const { title, menu } = data.site.siteMetadata;
+  const { title, subtitle, menu } = data.site.siteMetadata;
 
   const categories = data.allWordpressPost.edges
     .map(edge => edge.node.categories)
@@ -18,7 +18,7 @@ const Blog = props => {
 
   return (
     <React.Fragment>
-      <Header title={title} menu={menu}>
+      <Header title={title} menu={menu} subtitle={subtitle}>
         <Categories categories={categories} />
       </Header>
       <main className="container container--narrow js-blog-posts">
