@@ -9,7 +9,7 @@ import PageTemplateDetails from '../components/PageTemplateDetails';
 const PageTemplate = props => {
   const { data } = props;
   const { name } = data.wordpressSiteMetadata;
-  const { title: postTitle, description, tags } = data.wordpressPage;
+  const { title: postTitle, description = '', tags } = data.wordpressPage;
 
   return (
     <Layout>

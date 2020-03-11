@@ -7,7 +7,7 @@ import PostTemplateDetails from '../components/PostTemplateDetails';
 const PostTemplate = props => {
   const { data } = props;
   const { title: siteTitle } = data.site.siteMetadata;
-  const { title: postTitle, description, tags } = data.wordpressPost;
+  const { title: postTitle, description = '', tags } = data.wordpressPost;
 
   return (
     <Layout>
