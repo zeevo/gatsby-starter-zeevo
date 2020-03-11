@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
-import * as _ from 'underscore';
+import parse from 'html-react-parser';
 
 import Layout from '../components/Layout';
 import PageTemplateDetails from '../components/PageTemplateDetails';
@@ -15,8 +15,8 @@ const PageTemplate = props => {
     <Layout>
       <div>
         <Helmet>
-          <title>{`${postTitle} - ${_.underescape(name)}`}</title>
-          <meta name="description" content={description} />
+          <title>{`${postTitle} - ${parse(name)}`}</title>
+          <meta name="description" content={parse(description)} />
           <meta name="tags" {...(tags ? { content: tags.join(',') } : {})} />
         </Helmet>
         <PageTemplateDetails {...props} />
