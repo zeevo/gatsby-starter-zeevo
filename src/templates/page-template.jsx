@@ -1,19 +1,21 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+import * as _ from 'underscore';
+
 import Layout from '../components/Layout';
 import PageTemplateDetails from '../components/PageTemplateDetails';
 
 const PageTemplate = props => {
   const { data } = props;
-  const { title: siteTitle } = data.site.siteMetadata;
+  const { name } = data.wordpressSiteMetadata;
   const { title: postTitle, description, tags } = data.wordpressPage;
 
   return (
     <Layout>
       <div>
         <Helmet>
-          <title>{`${postTitle} - ${siteTitle}`}</title>
+          <title>{`${postTitle} - ${_.underescape(name)}`}</title>
           <meta name="description" content={description} />
           <meta name="tags" {...(tags ? { content: tags.join(',') } : {})} />
         </Helmet>
@@ -29,8 +31,6 @@ export const pageQuery = graphql`
   query($id: String!) {
     site {
       siteMetadata {
-        title
-        subtitle
         copyright
         profilePic
         menu {
@@ -43,6 +43,10 @@ export const pageQuery = graphql`
           twitter
         }
       }
+    }
+    wordpressSiteMetadata {
+      name
+      description
     }
     wordpressPage(id: { eq: $id }) {
       id

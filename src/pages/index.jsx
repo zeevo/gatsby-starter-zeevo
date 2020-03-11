@@ -1,19 +1,21 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+import parse from 'html-react-parser';
+
 import Layout from '../components/Layout';
 import Blog from '../components/Blog';
 
 const IndexRoute = props => {
   const { data } = props;
-  const { title, subtitle } = data.site.siteMetadata;
+  const { name, description } = data.wordpressSiteMetadata;
 
   return (
     <Layout>
       <div>
         <Helmet>
-          <title>{title}</title>
-          <meta name="description" content={subtitle} />
+          <title>{parse(name)}</title>
+          <meta name="description" content={parse(description)} />
         </Helmet>
         <div />
         <Blog {...props} />
@@ -42,6 +44,11 @@ export const pageQuery = graphql`
           twitter
         }
       }
+    }
+    wordpressSiteMetadata {
+      name
+      home
+      description
     }
     allWordpressPost(
       sort: { order: DESC, fields: date }

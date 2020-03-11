@@ -6,16 +6,15 @@ import CategoryTemplateDetails from '../components/CategoryTemplateDetails';
 
 const CategoryTemplate = props => {
   const { data, pageContext } = props;
-  const { title } = data.site.siteMetadata;
+  const { name } = data.wordpressSiteMetadata;
   const { category } = pageContext;
 
-  console.log('here');
   return (
     <Layout>
       <div>
         <Helmet>
-          <title>{`${category} - ${title}`}</title>
-          <meta name="description" content={`${title} - ${category}`} />
+          <title>{`${category} - ${name}`}</title>
+          <meta name="description" content={`${name} - ${category}`} />
         </Helmet>
         <CategoryTemplateDetails {...props} />
       </div>
@@ -29,9 +28,8 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
-        title
-        subtitle
         copyright
+        profilePic
         menu {
           label
           path
@@ -42,6 +40,11 @@ export const pageQuery = graphql`
           twitter
         }
       }
+    }
+    wordpressSiteMetadata {
+      name
+      home
+      description
     }
     allWordpressPost(
       limit: 1000

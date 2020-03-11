@@ -1,4 +1,5 @@
 import React from 'react';
+import parse from 'html-react-parser';
 
 import Header from './Header';
 import Categories from './Categories';
@@ -7,18 +8,19 @@ import Feed from './Feed';
 const Blog = props => {
   const { data } = props;
 
-  const { title, subtitle, menu } = data.site.siteMetadata;
+  const { menu } = data.site.siteMetadata;
+  const { name, description } = data.wordpressSiteMetadata;
 
   const categories = data.allWordpressPost.edges
     .map(edge => edge.node.categories)
     .reduce((accumulator, cats) => accumulator.concat(cats), [])
     .map(cate => cate.name)
     .reduce((uniques, item) => (uniques.includes(item) ? uniques : [...uniques, item]), [])
-    .filter(name => name.toLowerCase() !== 'uncategorized');
+    .filter(title => title.toLowerCase() !== 'uncategorized');
 
   return (
     <React.Fragment>
-      <Header title={title} menu={menu} subtitle={subtitle}>
+      <Header title={parse(name)} menu={menu} subtitle={parse(description)}>
         <Categories categories={categories} />
       </Header>
       <main className="container container--narrow js-blog-posts">
