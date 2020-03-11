@@ -197,7 +197,7 @@ module.exports = {
       options: {
         // baseUrl: 'http://ec2-3-15-175-195.us-east-2.compute.amazonaws.com/blog/index.php/',
         baseUrl: 'https://admin.zeevo.me/',
-        protocol: 'http',
+        protocol: 'https',
         hostingWPCOM: false,
         useACF: true,
         verboseOutput: false,
